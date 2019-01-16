@@ -1,0 +1,4 @@
+/** @dir deprecate
+ * @brief A deprecated directory
+ * @deprecated This directory is deprecated.
+ */
