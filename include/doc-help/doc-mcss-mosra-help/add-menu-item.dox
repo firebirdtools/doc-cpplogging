@@ -1,0 +1,153 @@
+/*
+    This file is part of mcss.mosra-help.
+
+    Copyright © 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018
+              Vladimír Vondruš <mosra@centrum.cz>
+
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.
+*/
+
+namespace mcss.mosra-help {
+
+/** @page add-menu-item Add menu item
+@brief Guide how to add menu item.
+
+@tableofcontents
+
+添加菜单，需要在Doxyfile文件中进行添加，以形成菜单项或子菜单项。菜单项的关联，可以是网址，这在Doxyfile
+中定义。也可以是dox文件，但需要关联代码，通过\@page将dox文件与菜单项关联。
+
+-   Doxyfile --- @ref Doxyfile
+-   main-dox --- @ref main-dox
+-   sub-dox --- @ref sub-dox
+
+@section Doxyfile Doxyfile文件内容
+
+Doxyfile文件中添加如下内容，以添加菜单栏：
+
+@code{.cmake}
+    ##! M_LINKS_NAVBAR1     = \
+    ##!                       "mcss-help add-menu-item" \
+    ##!                       "<a href=\"#\">Another link</a> getting-started" \
+    ##!                       "pages <a href=\"mailto:xxx@centrum.cz\">e-mail</a>" \
+    ##!                       "namespaces"
+    ##! M_LINKS_NAVBAR2     = \
+    ##!                       "annotated" \
+    ##!                       "files" \
+    ##!                       "<a href=\"https://github.com/xxx\">GitHub</a>"
+@endcode
+
+@section main-dox 主菜单dox文件内容
+
+新建文件：mcss-help.dox，通过\@page将dox文件与菜单项关联。
+
+@code
+
+    /*
+        This file is part of mcss.mosra-help.
+
+        Copyright © 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018
+                  Vladimír Vondruš <mosra@centrum.cz>
+
+        Permission is hereby granted, free of charge, to any person obtaining a
+        copy of this software and associated documentation files (the "Software"),
+        to deal in the Software without restriction, including without limitation
+        the rights to use, copy, modify, merge, publish, distribute, sublicense,
+        and/or sell copies of the Software, and to permit persons to whom the
+        Software is furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included
+        in all copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+        THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+        FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+        DEALINGS IN THE SOFTWARE.
+    */
+
+    /** @page mcss-help Mcss help
+    @brief Get started with mcss in matter of minutes.
+
+    - @subpage add-menu-item
+    */
+
+@endcode
+
+```
+    function fun(){
+        echo "这是一句非常牛逼的代码";
+    }
+    fun();
+```
+
+@note
+    子菜单页顶显示，要有如此样式：“主菜单>>子菜单”。需要在主菜单页中，使用“- \@subpage xxx-menu-item”。
+
+@section sub-dox 子菜单dox文件内容
+
+add-menu-item是文件名，Add menu item为页主题
+
+新建文件：add-menu-item.dox，
+内容如下：
+
+@code
+
+    /*
+        This file is part of mcss.mosra-help.
+
+        Copyright © 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018
+                  Vladimír Vondruš <mosra@centrum.cz>
+
+        Permission is hereby granted, free of charge, to any person obtaining a
+        copy of this software and associated documentation files (the "Software"),
+        to deal in the Software without restriction, including without limitation
+        the rights to use, copy, modify, merge, publish, distribute, sublicense,
+        and/or sell copies of the Software, and to permit persons to whom the
+        Software is furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included
+        in all copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+        THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+        FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+        DEALINGS IN THE SOFTWARE.
+    */
+
+
+    /** @page add-menu-item Add menu item
+    @brief Guide how to add menu item.
+
+    add-menu-item是文件名
+
+    Add menu item为页主题
+
+    */
+
+@endcode
+
+*/
+
+}
