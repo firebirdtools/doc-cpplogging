@@ -57,29 +57,7 @@
         <h1>
           format.cpp <span class="m-thin">source</span>
         </h1>
-<p>Format logger example</p><pre class="m-code"><span class="c1">//</span>
-<span class="c1">// Created by Ivan Shynkarenka on 28.09.2016</span>
-<span class="c1">//</span>
-
-<span class="cp">#include</span> <span class="cpf">&quot;benchmark/cppbenchmark.h&quot;</span><span class="cp"></span>
-
-<span class="cp">#include</span> <span class="cpf">&quot;logging/record.h&quot;</span><span class="cp"></span>
-
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">CppLogging</span><span class="p">;</span>
-
-<span class="n">BENCHMARK</span><span class="p">(</span><span class="s">&quot;Format(int)&quot;</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">static</span> <span class="n">Record</span> <span class="n">record</span><span class="p">;</span>
-    <span class="n">record</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;test {} test&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">.</span><span class="n">metrics</span><span class="p">().</span><span class="n">total_operations</span><span class="p">());</span>
-<span class="p">}</span>
-
-<span class="n">BENCHMARK</span><span class="p">(</span><span class="s">&quot;Format(int, double, string)&quot;</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">static</span> <span class="n">Record</span> <span class="n">record</span><span class="p">;</span>
-    <span class="n">record</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;test {}.{}.{} test&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">.</span><span class="n">metrics</span><span class="p">().</span><span class="n">total_operations</span><span class="p">(),</span> <span class="n">context</span><span class="p">.</span><span class="n">metrics</span><span class="p">().</span><span class="n">total_operations</span><span class="p">()</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">,</span> <span class="n">context</span><span class="p">.</span><span class="n">name</span><span class="p">());</span>
-<span class="p">}</span>
-
-<span class="n">BENCHMARK_MAIN</span><span class="p">()</span></pre>
+<p>Format logger example</p><pre class="m-code"></pre>
       </div>
     </div>
   </div>

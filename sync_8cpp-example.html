@@ -57,73 +57,7 @@
         <h1>
           sync.cpp <span class="m-thin">source</span>
         </h1>
-<p>Synchronous logger processor example</p><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;logging/config.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;logging/logger.h&quot;</span><span class="cp"></span>
-
-<span class="cp">#include</span> <span class="cpf">&lt;atomic&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-
-<span class="kt">void</span> <span class="nf">ConfigureLogger</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="c1">// Create default logging sink processor</span>
-    <span class="k">auto</span> <span class="n">sink</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">CppLogging</span><span class="o">::</span><span class="n">SyncProcessor</span><span class="o">&gt;</span><span class="p">();</span>
-    <span class="c1">// Add binary layout</span>
-    <span class="n">sink</span><span class="o">-&gt;</span><span class="n">layouts</span><span class="p">().</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">CppLogging</span><span class="o">::</span><span class="n">BinaryLayout</span><span class="o">&gt;</span><span class="p">());</span>
-    <span class="c1">// Add file appender with size-based rolling policy and archivation</span>
-    <span class="n">sink</span><span class="o">-&gt;</span><span class="n">appenders</span><span class="p">().</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">CppLogging</span><span class="o">::</span><span class="n">RollingFileAppender</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="s">&quot;rolling&quot;</span><span class="p">,</span> <span class="s">&quot;bin.log&quot;</span><span class="p">,</span> <span class="mi">4096</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="nb">true</span><span class="p">));</span>
-
-    <span class="c1">// Configure example logger</span>
-    <span class="n">CppLogging</span><span class="o">::</span><span class="n">Config</span><span class="o">::</span><span class="n">ConfigLogger</span><span class="p">(</span><span class="s">&quot;example&quot;</span><span class="p">,</span> <span class="n">sink</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">// Configure logger</span>
-    <span class="n">ConfigureLogger</span><span class="p">();</span>
-
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Press Enter to stop...&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
-    <span class="kt">int</span> <span class="n">concurrency</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-
-    <span class="c1">// Start some threads</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">stop</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">&gt;</span> <span class="n">threads</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="kr">thread</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kr">thread</span> <span class="o">&lt;</span> <span class="n">concurrency</span><span class="p">;</span> <span class="o">++</span><span class="kr">thread</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">threads</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">([</span><span class="o">&amp;</span><span class="n">stop</span><span class="p">]()</span>
-        <span class="p">{</span>
-            <span class="c1">// Create example logger</span>
-            <span class="n">CppLogging</span><span class="o">::</span><span class="n">Logger</span> <span class="n">logger</span><span class="p">(</span><span class="s">&quot;example&quot;</span><span class="p">);</span>
-
-            <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stop</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="c1">// Log some messages with different level</span>
-                <span class="n">logger</span><span class="p">.</span><span class="n">Debug</span><span class="p">(</span><span class="s">&quot;Debug message&quot;</span><span class="p">);</span>
-                <span class="n">logger</span><span class="p">.</span><span class="n">Info</span><span class="p">(</span><span class="s">&quot;Info message&quot;</span><span class="p">);</span>
-                <span class="n">logger</span><span class="p">.</span><span class="n">Warn</span><span class="p">(</span><span class="s">&quot;Warning message&quot;</span><span class="p">);</span>
-                <span class="n">logger</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&quot;Error message&quot;</span><span class="p">);</span>
-                <span class="n">logger</span><span class="p">.</span><span class="n">Fatal</span><span class="p">(</span><span class="s">&quot;Fatal message&quot;</span><span class="p">);</span>
-
-                <span class="c1">// Yield for a while...</span>
-                <span class="n">CppCommon</span><span class="o">::</span><span class="n">Thread</span><span class="o">::</span><span class="n">Yield</span><span class="p">();</span>
-            <span class="p">}</span>
-        <span class="p">}));</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Wait for input</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>
-
-    <span class="c1">// Stop threads</span>
-    <span class="n">stop</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-
-    <span class="c1">// Wait for all threads</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="kr">thread</span> <span class="o">:</span> <span class="n">threads</span><span class="p">)</span>
-        <span class="kr">thread</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></pre>
+<p>Synchronous logger processor example</p><pre class="m-code"></pre>
       </div>
     </div>
   </div>
