@@ -23,18 +23,36 @@
     DEALINGS IN THE SOFTWARE.
 */
 
-namespace doc-help {
+namespace git-help {
 
-/** @page doc-help Doc-help
-@brief Get started with doc in matter of minutes.
+/** @page doc-cpplogging-help doc cpplogging help
+@brief Guide how to git doc.
 
-- @subpage git-help
-- @subpage mcss-help
-- @subpage cmake-help
-- @subpage electron-help
-- @subpage doc-cpplogging-help
+git流程：
 
-[test](doc-test\test.html)
+@code{.sh}
+    git clone https://github.com/firebirdtools/doc-cpplogging.git
+    git add .
+    git commit -m "..."
+    git push -u origin master
+    ghp-import bin/doc/html -b gh-pages
+    git push origin gh-pages
+@endcode
+
+实例：
+
+为了避免include文件路径的出现，doxyfile文件放置于项目的include文件夹中。
+
+@code{.sh}
+    firebird@tools:~/gitcode/m.css/doxygen$ ./dox2html5.py ~/github/doc/doc-cpplogging/include/Doxyfile-mcss
+    # delete xml
+    firebird@tools:~/github/doc/doc-cpplogging$ git add .
+    firebird@tools:~/github/doc/doc-cpplogging$ git commit -m "fbt"
+    firebird@tools:~/github/doc/doc-cpplogging$ git push -u origin master
+    firebird@tools:~/github/doc/doc-cpplogging$ ghp-import bin/doc/html -b gh-pages
+    firebird@tools:~/github/doc/doc-cpplogging$ git push origin gh-pages
+@endcode
 
 */
+
 }

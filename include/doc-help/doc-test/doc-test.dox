@@ -25,16 +25,9 @@
 
 namespace doc-help {
 
-/** @page doc-help Doc-help
+/** @page doc-test Doc test
 @brief Get started with doc in matter of minutes.
 
-- @subpage git-help
-- @subpage mcss-help
-- @subpage cmake-help
-- @subpage electron-help
-- @subpage doc-cpplogging-help
-
-[test](doc-test\test.html)
 
 */
 }

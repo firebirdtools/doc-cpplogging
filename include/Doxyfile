@@ -1,18 +1,19 @@
 # Doxyfile 1.8.15
 
-INPUT                   = ./include
+INPUT                   = ./
 DOXYFILE_ENCODING       = UTF-8
 # PROJECT_LOGO            =
 FILE_PATTERNS           = *.cpp \
                           *.h \
                           *.hpp \
+			  *.html \
                           *.dox
 # OUTPUT_LANGUAGE         = Chinese
-OUTPUT_DIRECTORY        = ./bin/doc
+OUTPUT_DIRECTORY        = ../bin/doc
 GENERATE_MAN            = YES
 GENERATE_LATEX          = NO
-PROJECT_NAME            = CppLogging
-PROJECT_BRIEF           = docs
+PROJECT_NAME            = fbt
+PROJECT_BRIEF           = cppLogging-doc
 GENERATE_XML            = NO
 RECURSIVE 				= YES 
 # VERBATIM_HEADERS      	= NO
@@ -53,13 +54,14 @@ M_SEARCH_HELP = "Search for symbols, directories, files, pages. You can omit any
 ##! //M_THEME_COLOR       = 00ffff
 ##! M_FAVICON           = firebird.png
 ##! M_LINKS_NAVBAR1     = \
-##!						  "doc-help git-help mcss-help cmake-help electron-help" \ 
+##! 				"<a href=\"https://www.firebirdtool.com/blog/\">Blog</a>" \
+##!						  "doc-help git-help mcss-help cmake-help electron-help doc-cpplogging-help" \ 
 ##! 					  "pages" \
 ##!                       "namespaces"
 ##! M_LINKS_NAVBAR2     = \
 ##!						  "annotated" \
 ##!                       "files"
 ##! M_SEARCH_DOWNLOAD_BINARY = YES
-##! M_MAIN_PROJECT_URL  = https://github.com/firebirdtools/CppLogging/
+##! M_MAIN_PROJECT_URL  = https://www.firebirdtool.com/
 ##! //M_SEARCH_DISABLED   = YES
 
